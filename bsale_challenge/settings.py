@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'productos',
 ]
 
 MIDDLEWARE = [
@@ -69,17 +70,22 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'bsale_challenge.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'USER': 'bsale_test',
+        'NAME': 'bsale_test',
+        'HOST':'mdb-test.c6vunyturrl6.us-west-1.rds.amazonaws.com',
+        'PORT': '3306',
+        'PASSWORD': 'bsale_test',
     }
+        
 }
+    
 
+   
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators

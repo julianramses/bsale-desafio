@@ -19,7 +19,7 @@ services:
   web:
     build: .
     command: >
-      sh -c 'python manage.py makemigrations && python manage.py migrate &&
+      sh -c 'pip install mysqlclient && python manage.py makemigrations productos &&
             python manage.py runserver 0.0.0.0:8000'
     volumes:
       - .:/code
@@ -27,10 +27,10 @@ services:
       - "8000:8000"
     environment:
       - BSALECHALLENGE_MYSQL_DB_NAME=bsale_test
-      - POLLOFUSIONMEMBRILLO_MYSQL_DB_USER=bsale_test
-      - POLLOFUSIONMEMBRILLO_MYSQL_DB_PASSWORD=bsale_test
-      - POLLOFUSIONMEMBRILLO_MYSQL_DB_HOST=mdb-test.c6vunyturrl6.us-west-1.rds.amazonaws.com
-      - POLLOFUSIONMEMBRILLO_MYSQL_DB_PORT=3306
+      - BSALECHALLENGE_MYSQL_DB_USER=bsale_test
+      - BSALECHALLENGE_MYSQL_DB_PASSWORD=bsale_test
+      - BSALECHALLENGE_MYSQL_DB_HOST=mdb-test.c6vunyturrl6.us-west-1.rds.amazonaws.com
+      - BSALECHALLENGE_MYSQL_DB_PORT=3306
     depends_on:
       db:
         condition: service_healthy
