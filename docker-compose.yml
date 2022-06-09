@@ -1,0 +1,36 @@
+version: "3.8"
+
+services:
+  db:
+    image: mysql:latest
+    volumes:
+      - "./.mysql-data/db:/var/lib/mysql"
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: 'mdb-test.c6vunyturrl6.us-west-1.rds.amazonaws.com'
+      MYSQL_USER: 'bsale_test'
+      MYSQL_PASSWORD: 'bsale_test'
+      MYSQL_ROOT_PASSWORD: 'bsale_test'
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+  web:
+    build: .
+    command: >
+      sh -c 'python manage.py makemigrations && python manage.py migrate &&
+            python manage.py runserver 0.0.0.0:8000'
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    environment:
+      - BSALECHALLENGE_MYSQL_DB_NAME=bsale_test
+      - POLLOFUSIONMEMBRILLO_MYSQL_DB_USER=bsale_test
+      - POLLOFUSIONMEMBRILLO_MYSQL_DB_PASSWORD=bsale_test
+      - POLLOFUSIONMEMBRILLO_MYSQL_DB_HOST=mdb-test.c6vunyturrl6.us-west-1.rds.amazonaws.com
+      - POLLOFUSIONMEMBRILLO_MYSQL_DB_PORT=3306
+    depends_on:
+      db:
+        condition: service_healthy
