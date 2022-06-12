@@ -16,11 +16,12 @@ Including another URLconf
 from itertools import product
 from django.contrib import admin
 from django.urls import path
-from productos import views
+from productos import urls, views
 from django.urls import include
 
 import productos
 
 urlpatterns = [
-   path('productos/',include('productos.urls'))
+   path('productos/',include('productos.urls')),
+   path('category/',include('productos.urls'))
 ]
