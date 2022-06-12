@@ -1,1 +1,3 @@
-web: gunicorn bsale-challenge.wsgi
+web: gunicorn bsale-challenge.wsgi:application --log-file - --log-level debug
+python manage.py collectstatic --noinput
+manage.py migrate
