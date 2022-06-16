@@ -104,9 +104,11 @@ Para verificar que la API esta funcionando, debemos utilizar alguna herramienta 
 
 #### GET de todos los productos y los atributos
 
+
 ```http
   GET /productos/productos/
-```
+````
+
 lo que nos da como respuesta todos los productos.
 ```json
 "{
@@ -129,10 +131,13 @@ lo que nos da como respuesta todos los productos.
   ....
 `````
 
+
 #### GET de un producto en especifico por id
 ```http
   GET /productos/productos/5
 ```
+
+
 lo que nos da como respuesta el primer producto de id 5.
 ```json
 {
@@ -147,6 +152,7 @@ lo que nos da como respuesta el primer producto de id 5.
 	}]
 }
 ````
+
 mensaje de error (id no existe)
 
 ```json
